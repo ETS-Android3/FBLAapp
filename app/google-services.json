@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "138329065408",
+    "project_id": "schedule-app-4c14b",
+    "storage_bucket": "schedule-app-4c14b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138329065408:android:f1a2279c81a4b1c02c6a25",
+        "android_client_info": {
+          "package_name": "com.nickli.scheduleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "138329065408-59ijmfp9t5bg8sfoj6lnicoocps8dmf9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nickli.scheduleapp",
+            "certificate_hash": "225ea5051cfb9ccc7bdbcbb74e4b6b2b80dde6fb"
+          }
+        },
+        {
+          "client_id": "138329065408-1d1aoqpvd7cbm39b4fm722d2gsidoorv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT8h2xTVGzokJsjs-r5Ho08VGr4c0JDDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "138329065408-1d1aoqpvd7cbm39b4fm722d2gsidoorv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

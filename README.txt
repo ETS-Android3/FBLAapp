@@ -30,6 +30,9 @@ In order to build you will need Android Studio 11.0 SDK Platform installed as we
 emulator with API 16+ must be installed. This app only works for Android devices with API 16+. Upon opening Android Studio set the Run/Debug configurations to "app" and click
 "run 'app'" to launch app onto emulator or connected Android device.
 
+Application APK Install/Run Instructions
+/release/app-release.apk is a deployable .apk file that could be downloaded on to android devices for use. 
+
 Resources Used
 - Menu Icons made using Ucraft - https://www.ucraft.com/
 

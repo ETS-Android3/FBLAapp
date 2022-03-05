@@ -21,6 +21,7 @@ import com.nickli.scheduleapp.schedule.ScheduleActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    // Define variables
     ImageView imageView;
     TextView textView;
     ConstraintLayout btnLogOut;
@@ -41,17 +42,22 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout showUploads;
 
     @Override
+    // Method called when app is run or started
     protected void onStart() {
         super.onStart();
+        // Makes sure to see if user is currently logged in or not
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
+            // If not logged in, sends user to Login Activity
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
     }
 
     @Override
+    // When activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sets frontend layout
         setContentView(R.layout.activity_main);
 
         schedule = findViewById(R.id.schedule);
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogOut = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
 
+        // OnClickListener for all the different functions, sends them to different activities
         btnLogOut.setOnClickListener(view -> {
             mAuth.signOut();
             startActivity(new Intent(MainActivity.this, LoginActivity.class));

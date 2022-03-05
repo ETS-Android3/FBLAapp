@@ -27,22 +27,23 @@ import com.nickli.scheduleapp.R;
 import java.util.ArrayList;
 
 public class EmailActivity extends AppCompatActivity implements EmailAdapter.StaffClickListener{
+    // Define variables
     private RecyclerView emailView;
     Button tvBack3;
     TextView staffEmail;
-    //Button addEmail;
 
     private EmailAdapter adapter;
     private ArrayList<EmailUpload> list;
     FirebaseAuth auth;
 
-    private EmailAdapter.RecyclerViewClickListener listener;
-
     @Override
+    // When activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set frontend to activity_email layout
         setContentView(R.layout.activity_email);
 
+        // Get user authentication and define database path
         auth = FirebaseAuth.getInstance();
         String location = "staff/";
 
@@ -51,13 +52,8 @@ public class EmailActivity extends AppCompatActivity implements EmailAdapter.Sta
         tvBack3 = findViewById(R.id.tv_back3);
         staffEmail = findViewById(R.id.staffEmail);
 
-        //addEmail = findViewById(R.id.addEmail);
-
-//        addEmail.setOnClickListener(view -> {
-//            startActivity(new Intent(EmailActivity.this, EmailAdd.class));
-//        });
-
         EditText searchStaff = findViewById(R.id.searchStaff);
+        // Implementing search text
         searchStaff.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -71,27 +67,24 @@ public class EmailActivity extends AppCompatActivity implements EmailAdapter.Sta
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                // Calls function
                 filter(s.toString());
             }
         });
 
-        //setOnClickListener();
         emailView = findViewById(R.id.email_view);
         emailView.setHasFixedSize(true);
         emailView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        adapter = new EmailAdapter(this , list, this::selectedStaff);//listener);
+        // Connect to EmailAdapter to retrieve data from realtime database
+        adapter = new EmailAdapter(this , list, this::selectedStaff);
         emailView.setAdapter(adapter);
 
         tvBack3.setOnClickListener(view -> {
             startActivity(new Intent(EmailActivity.this, MainActivity.class));
         });
 
-//        email.setOnClickListener(view -> {
-//            EmailStaff();
-//        });
-
+        // Add all email information onto RecyclerView
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,37 +103,7 @@ public class EmailActivity extends AppCompatActivity implements EmailAdapter.Sta
 
     }
 
-    private void setOnClickListener() {
-        listener = new EmailAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position){
-                //startActivity(new Intent(Intent.ACTION_SEND, Uri.parse("nickli.1540489@gmail.com")));
-//                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//                String email = list.get(position).getStaffEmail();
-//                emailIntent.setData(Uri.parse("mailto:"+email));
-//                try {
-//                    startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-//                    finish();
-//                    Log.i("Finished sending email...", "");
-//                } catch (android.content.ActivityNotFoundException ex) {
-//                    Toast.makeText(EmailActivity.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-//                }
-                String email = list.get(position).getStaffEmail();
-                String[] emails = email.split(",");
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_EMAIL, emails);
-
-                intent.setType("message/rfc822");
-                startActivity(Intent.createChooser(intent, "Choose an email client: "));
-            }
-        };
-    }
-
-    private void EmailStaff() {
-        String email = staffEmail.getText().toString();
-        startActivity(new Intent(Intent.ACTION_SENDTO, Uri.parse(email)));
-    }
-
+    // Changes RecyclerView based on text inside search
     private void filter(String text) {
         ArrayList<EmailUpload> filteredList = new ArrayList<>();
 
@@ -154,14 +117,20 @@ public class EmailActivity extends AppCompatActivity implements EmailAdapter.Sta
     }
 
     @Override
+    // When the Recycler View for a staff or teacher is pressed
     public void selectedStaff(EmailUpload emailUpload){
-        //Toast.makeText(this, "Selected Staff: "+emailUpload.getStaffEmail(), Toast.LENGTH_SHORT).show();
+        // Obtain the staff email from the Firebase Realtime Database
         String email = emailUpload.getStaffEmail();
+        // Convert the String email into an array
         String[] emails = email.split(",");
+        // Create new activity to email staff or teacher
         Intent intent = new Intent(Intent.ACTION_SEND);
+        // Enter the array of email(s) in the TO: section of the email client
         intent.putExtra(Intent.EXTRA_EMAIL, emails);
 
+        // Shows an activity to select an email client
         intent.setType("message/rfc822");
+        // Opens the email client that is selected from the previous activity
         startActivity(Intent.createChooser(intent, "Choose an email client: "));
     }
 

@@ -21,6 +21,7 @@ import com.nickli.scheduleapp.R;
 import java.util.ArrayList;
 
 public class LunchActivity extends AppCompatActivity {
+    // Define variables
     private RecyclerView lunchView;
     Button tvBack2;
 
@@ -29,10 +30,13 @@ public class LunchActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
     @Override
+    // When activity is started/created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set frontend to layout
         setContentView(R.layout.activity_lunch);
 
+        // Grabs Firebase Instance and set database location
         auth = FirebaseAuth.getInstance();
         String location = "lunch/";
 
@@ -40,6 +44,7 @@ public class LunchActivity extends AppCompatActivity {
 
         tvBack2 = findViewById(R.id.tv_back2);
 
+        // Sets the layout manager to organize RecyclerView positions
         lunchView = findViewById(R.id.lunch_view);
         lunchView.setHasFixedSize(true);
         lunchView.setLayoutManager(new LinearLayoutManager(this));
@@ -51,6 +56,7 @@ public class LunchActivity extends AppCompatActivity {
             startActivity(new Intent(LunchActivity.this, MainActivity.class));
         });
 
+        // Method to take all information from list and show it on RecyclerViews
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

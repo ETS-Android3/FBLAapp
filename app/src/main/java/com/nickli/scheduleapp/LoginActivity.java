@@ -27,8 +27,10 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     @Override
+    // Called when activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Change frontend layout
         setContentView(R.layout.activity_login);
 
         etLoginEmail = (TextInputEditText)findViewById(R.id.etLoginEmail);
@@ -38,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        // OnClickListener to log user in and change activities
         btnLogin.setOnClickListener(view -> {
             loginUser();
         });
@@ -46,10 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // Method called when login button clicked
     private void loginUser() {
+        // Changes inputted text to string variables
         String email = etLoginEmail.getText().toString();
         String password = etLoginPassword.getText().toString();
 
+        // Sets parameters to make sure email and password are not empty
         if (TextUtils.isEmpty(email)) {
             etLoginEmail.setError("Email cannot be empty");
             etLoginEmail.requestFocus();
@@ -59,14 +65,19 @@ public class LoginActivity extends AppCompatActivity {
             etLoginPassword.requestFocus();
         }
         else {
+            // If above is all false, method is called
+            // Makes sure that there is such email and password in Firebase Authentication
             mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    // If successful
                     if (task.isSuccessful()) {
+                        // Lets the user enter, and shows a log to the user to tell them they are logged in
                         Toast.makeText(LoginActivity.this, "User logged on successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
                     else {
+                        // If not successful, shows log in error with error message
                         Toast.makeText(LoginActivity.this, "Log in Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -75,4 +86,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-

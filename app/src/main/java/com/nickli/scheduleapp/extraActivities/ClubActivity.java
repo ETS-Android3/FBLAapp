@@ -25,9 +25,9 @@ import com.nickli.scheduleapp.R;
 import java.util.ArrayList;
 
 public class ClubActivity extends AppCompatActivity {
+    // Define variables
     private RecyclerView clubView;
     Button tvBack4;
-    Button importClubs;
 
     private ClubAdapter adapter;
     private ArrayList<ClubUpload> list;
@@ -36,18 +36,21 @@ public class ClubActivity extends AppCompatActivity {
     private ClubAdapter.RecyclerViewClickListener listener;
 
     @Override
+    // When the activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sets frontend to activity_club layout
         setContentView(R.layout.activity_club);
 
+        // Gets Firebase Instance and sets location for database
         auth = FirebaseAuth.getInstance();
         String location = "clubs/";
 
         DatabaseReference root = FirebaseDatabase.getInstance().getReference(location);
 
         tvBack4 = findViewById(R.id.tv_back4);
-        //importClubs = findViewById(R.id.importClubs);
 
+        // Implementing the search and sort for the RecyclerViews
         EditText searchClubs = findViewById(R.id.searchClubs);
         searchClubs.addTextChangedListener(new TextWatcher() {
             @Override
@@ -67,7 +70,7 @@ public class ClubActivity extends AppCompatActivity {
             }
         });
 
-        setOnClickListener();
+        // Adjusts position and sets layout to have RecyclerViews
         clubView = findViewById(R.id.club_view);
         clubView.setHasFixedSize(true);
         clubView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,14 +78,12 @@ public class ClubActivity extends AppCompatActivity {
         adapter = new ClubAdapter(this , list, listener);
         clubView.setAdapter(adapter);
 
+        // Changes activities when back button is clicked
         tvBack4.setOnClickListener(view -> {
             startActivity(new Intent(ClubActivity.this, MainActivity.class));
         });
 
-//        importClubs.setOnClickListener(view -> {
-//            startActivity(new Intent(ClubActivity.this, ClubAdd.class));
-//        });
-
+        // Checks for data in the database, retrieves and shows it
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -101,15 +102,7 @@ public class ClubActivity extends AppCompatActivity {
 
     }
 
-    private void setOnClickListener() {
-        listener = new ClubAdapter.RecyclerViewClickListener() {
-            @Override
-            public void onClick(View v, int position){
-
-            }
-        };
-    }
-
+    // Method filter, to find search item that appears in Club Names
     private void filter(String text) {
         ArrayList<ClubUpload> filteredList = new ArrayList<>();
 
@@ -119,6 +112,7 @@ public class ClubActivity extends AppCompatActivity {
             }
         }
 
+        // Changes view to only to filtered RecyclerViews
         adapter.filterList(filteredList);
     }
 

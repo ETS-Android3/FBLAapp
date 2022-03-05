@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity  {
+    // Defines variables
     TextInputEditText etRegEmail;
     TextInputEditText etRegPassword;
     TextInputEditText etRegPassword2;
@@ -37,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Set frontend layout
         setContentView(R.layout.activity_signup);
 
         etRegEmail = findViewById(R.id.etRegEmail);
@@ -47,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity  {
 
         mAuth = FirebaseAuth.getInstance();
 
+        // OnClickListeners to create user and change activities
         btnRegister.setOnClickListener(view -> {
             createUser();
         });
@@ -55,11 +58,14 @@ public class SignUpActivity extends AppCompatActivity  {
             startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
         });
     }
+    // Method is called when Register button clicked
     private void createUser() {
+        // Converts input text to string variables
         String email = etRegEmail.getText().toString();
         String password = etRegPassword.getText().toString();
         String password2 = etRegPassword2.getText().toString();
 
+        // Sets parameters to make sure input text is not null/empty
         if (TextUtils.isEmpty(email)) {
             etRegEmail.setError("Email cannot be empty");
             etRegEmail.requestFocus();
@@ -72,14 +78,18 @@ public class SignUpActivity extends AppCompatActivity  {
             etRegPassword2.requestFocus();
         }
         else {
+            // If all above is false
+            // Firebase Authentication logs email and password into system
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    // If successful, changes activity to login, and shows successful text
                     if (task.isSuccessful()) {
                         Toast.makeText(SignUpActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                     }
                     else {
+                        // If unsuccessful shows error text along with exception error
                         Toast.makeText(SignUpActivity.this, "Registration Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -26,6 +26,7 @@ import java.util.Locale;
 
 public class ScheduleAdd extends AppCompatActivity {
 
+    // Define variables
     Button classTime;
     Button btnAddClass;
     TextView tvCancel;
@@ -43,8 +44,10 @@ public class ScheduleAdd extends AppCompatActivity {
     private Uri mCurrentReminderUri;
 
     @Override
+    // When activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Sets frontend layout and all the viewIDs
         setContentView(R.layout.actvitity_schedule_add);
 
         classTime = findViewById(R.id.btn_classTime);
@@ -55,6 +58,7 @@ public class ScheduleAdd extends AppCompatActivity {
         className = findViewById(R.id.className);
         classDay = findViewById(R.id.classDay);
 
+        // setOnClickListener to go back activities and upload schedule
         btnAddClass.setOnClickListener(view -> {
             classInfoUpload();
         });
@@ -65,10 +69,11 @@ public class ScheduleAdd extends AppCompatActivity {
 
     }
 
+    // Method to upload class info
     private void classInfoUpload() {
         auth = FirebaseAuth.getInstance();
-        mStorageRef = FirebaseStorage.getInstance().getReference();
 
+        // Gets text from textInput in activity
         String class_Period = classPeriod.getText().toString();
         String class_Name = className.getText().toString();
         String class_Day = classDay.getText().toString();
@@ -77,10 +82,11 @@ public class ScheduleAdd extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
         String userID = user.getUid();
 
+        // Set location of upload in the database
         String location_database = "users/" + userID + "/schedule/";
-        //String location_storage = "images/users/" + userID + "/schedule/";
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(location_database);
 
+        // Sets parameters to make sure InputTexts are not null
         if (TextUtils.isEmpty(class_Period)) {
             classPeriod.setError("Period cannot be empty");
             classPeriod.requestFocus();
@@ -94,6 +100,7 @@ public class ScheduleAdd extends AppCompatActivity {
             classTime.setError("Class Time cannot be empty");
             classTime.requestFocus();
         } else {
+            // If all of the above is false, ScheduleUpload is passed to upload the class info
             ScheduleUpload upload = new ScheduleUpload(class_Period, class_Name, class_Time, class_Day);
             String uploadId = class_Period;
             assert uploadId != null;
@@ -103,11 +110,13 @@ public class ScheduleAdd extends AppCompatActivity {
         }
     }
 
+    // Implements pop-up time picker for class time
     public void popTimePicker(View view){
 
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                // Gets the time and formats it into readable format
                 hour = hourOfDay;
                 minutes = minute;
                 classTime.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minutes));
@@ -117,6 +126,7 @@ public class ScheduleAdd extends AppCompatActivity {
 
         int style = AlertDialog.THEME_HOLO_DARK;
 
+        // Shows the TimePicker actvity
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minutes, true);
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();

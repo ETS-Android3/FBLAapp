@@ -8,6 +8,7 @@ public class LunchUpload {
         this.dayOfWeek = dayOfWeek;
         this.food = food;
     }
+    // Returns variables when needed for the RecyclerView
     public String getDayOfWeek() {
         return dayOfWeek;
     }

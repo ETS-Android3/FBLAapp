@@ -23,6 +23,7 @@ import com.nickli.scheduleapp.R;
 import java.util.ArrayList;
 
 public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapter.ScheduleClickListener{
+    // Define variables
     private RecyclerView scheduleView;
     Button addSchedule;
     TextView tvBack1;
@@ -32,9 +33,11 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapt
     FirebaseAuth auth;
 
     @Override
+    // When activity is created
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Grabs current userID and sets specific location under user's ID
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         String userID = user.getUid();
@@ -46,6 +49,7 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapt
         tvBack1 = findViewById(R.id.tv_back1);
         addSchedule = findViewById(R.id.btnAdd);
 
+        // Sets the layout manager to organize the position of the RecyclerViews
         scheduleView = findViewById(R.id.schedule_view);
         scheduleView.setHasFixedSize(true);
         scheduleView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,6 +57,7 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapt
         adapter = new ScheduleAdapter(this , list, this::selectedSchedule);
         scheduleView.setAdapter(adapter);
 
+        // OnClickListener for back button and addSchedule button to change activities
         tvBack1.setOnClickListener(view -> {
             startActivity(new Intent(ScheduleActivity.this, MainActivity.class));
         });
@@ -61,6 +66,7 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapt
             startActivity(new Intent(ScheduleActivity.this, ScheduleAdd.class));
         });
 
+        // Method to upload the information from the database
         root.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,6 +86,7 @@ public class ScheduleActivity extends AppCompatActivity implements ScheduleAdapt
 
 
     @Override
+    // Method to send activity to remove schedule and bring info along with it
     public void selectedSchedule(ScheduleUpload scheduleUpload) {
         String period = scheduleUpload.getClassPeriod();
         startActivity(new Intent(ScheduleActivity.this, ScheduleRemind.class).putExtra("data", scheduleUpload));

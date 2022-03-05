@@ -2,15 +2,17 @@ package com.nickli.scheduleapp.emailStaff;
 
 import org.json.JSONArray;
 
+// Class to handle getting information from database
 public class EmailUpload {
     private String staffName;
     private String staffEmail;
     private String staffType;
 
+    // Calls class EmailUpload and defines variables
     public EmailUpload(String staffName, String staffEmail, String staffType) {
         this.staffName = staffName;
         this.staffEmail = staffEmail;
-        this.staffType = "Employee";
+        this.staffType = staffType;
     }
     public String getStaffName() {
         return staffName;

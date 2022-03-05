@@ -33,12 +33,14 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
 
     @NonNull
     @Override
+    // Takes obtained context from database and shows it on RecyclerView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.schedule_item, parent ,false);
         return new MyViewHolder(v);
     }
 
     @Override
+    // Sets text to information in the list
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ScheduleUpload scheduleUpload = mList.get(position);
         String period = scheduleUpload.getClassPeriod();
@@ -50,6 +52,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         holder.classTime.setText("Time: " + time);
         holder.classDay.setText("Days: " + days);
 
+        // Implements onClickListener for the RecyclerView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,10 +62,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
     }
 
     @Override
+    // Returns size of list
     public int getItemCount() {
         return mList.size();
     }
 
+    // Class to define RecyclerView layout
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView classPeriod;

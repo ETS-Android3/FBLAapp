@@ -26,22 +26,26 @@ public class LunchAdapter extends RecyclerView.Adapter<LunchAdapter.MyViewHolder
 
     @NonNull
     @Override
+    // Takes obtained context from database and shows it on RecyclerView
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.lunch_item, parent ,false);
         return new MyViewHolder(v);
     }
 
     @Override
+    // Sets text to information in the list
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.dayOfWeek.setText(mList.get(position).getDayOfWeek());
         holder.food.setText(mList.get(position).getFood());
     }
 
     @Override
+    // Returns size of list
     public int getItemCount() {
         return mList.size();
     }
 
+    // Method to define RecyclerView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView dayOfWeek;

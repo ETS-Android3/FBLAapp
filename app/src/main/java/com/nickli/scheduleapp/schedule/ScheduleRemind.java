@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class ScheduleRemind extends AppCompatActivity {
 
+    // Define Variables
     TextView tvSelectedPeriod;
     TextView tvSelectedClass;
     TextView tvSelectedTime;
@@ -49,27 +50,22 @@ public class ScheduleRemind extends AppCompatActivity {
         remindBack = findViewById(R.id.remindBack);
         removeSchedule = findViewById(R.id.btnRemove);
 
-
+        // Takes information sent from ScheduleActivity to get info of classes
         scheduleUpload = (ScheduleUpload) intent.getSerializableExtra("data");
         String period = "Period: " + scheduleUpload.getClassPeriod();
         String class_ = scheduleUpload.getClassName();
         String time = "Starting at " + scheduleUpload.getClassTime();
-        String[] days = scheduleUpload.getClassDate().split(", ");
-        String day = "";
-        for (int i = 0; i < (days.length)-1; i++){
-            day += days[i] + " and ";
-        }
-        if (days.length > 1){
-            day += days[-1];
-        } else {
-            day = "On "+scheduleUpload.getClassDate();
-        }
+        String day = "On " + scheduleUpload.getClassDate();
+
+        // Sets text in this activity to show correct information
         tvSelectedPeriod.setText(period);
         tvSelectedClass.setText(class_);
         tvSelectedTime.setText(time);
         tvSelectedDay.setText(day);
 
+        // OnClickListeners to remove schedule or go back when clicked
         removeSchedule.setOnClickListener(view -> {
+            // Calls method
             scheduleRemove(scheduleUpload);
         });
 
@@ -79,19 +75,23 @@ public class ScheduleRemind extends AppCompatActivity {
 
     }
 
+    // When called from the OnClickListener
     private void scheduleRemove(ScheduleUpload scheduleUpload) {
+        // Gets location of the schedule
         auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         String userID = user.getUid();
         String location = "users/" + userID + "/";
 
+        // Sets the location and uses query to find the correct class period to remove
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(location).child("schedule");
         Query query = ref.child(scheduleUpload.getClassPeriod());
 
+        // Once query found, method called to remove value
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // remove the value at reference
+                // Removes the value at reference
                 dataSnapshot.getRef().removeValue();
                 startActivity(new Intent(ScheduleRemind.this, ScheduleActivity.class));
             }

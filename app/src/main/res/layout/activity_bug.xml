@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity"
+    tools:context=".BugActivity"
     android:background="@color/cardinal">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -18,7 +18,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
-        android:text="Sign Up"
+        android:text="Report a Bug"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -36,14 +36,14 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etRegEmail"
+            android:id="@+id/bugType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@android:color/transparent"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
+            android:hint="Explanation"
+            android:inputType="text"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
@@ -56,35 +56,14 @@
             android:layout_marginEnd="30dp"
             android:background="#B1B1B1" />
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etRegPass"
+            android:id="@+id/bugSteps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:backgroundTint="@android:color/transparent"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="30dp"
-            android:background="#B1B1B1" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etRegPass2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:backgroundTint="@android:color/transparent"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
+            android:hint="Steps to Get Bug"
+            android:inputType="textMultiLine"
             android:padding="15dp"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
@@ -103,8 +82,8 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnRegister"
-                android:text="Continue"
+                android:id="@+id/bugReportBtn"
+                android:text="Report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -121,7 +100,7 @@
                 tools:ignore="RelativeOverlap" />
 
             <TextView
-                android:id="@+id/tvLoginHere"
+                android:id="@+id/bugCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -129,7 +108,7 @@
                 android:layout_marginStart="30dp"
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="15dp"
-                android:text="Log In"
+                android:text="Cancel"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />

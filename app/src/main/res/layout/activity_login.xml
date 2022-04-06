@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/cardinal">
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,7 +20,7 @@
         android:layout_marginTop="116dp"
         android:layout_marginEnd="8dp"
         android:text="Log In"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,8 +46,8 @@
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="15dp"
-            android:textColor="#292929"
-            android:textColorHint="#797979" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -54,7 +55,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="30dp"
-            android:background="#999999" />
+            android:background="@color/white" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLoginPassword"
@@ -66,8 +67,8 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="15dp"
-            android:textColor="#292929"
-            android:textColorHint="#797979" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -75,7 +76,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="30dp"
-            android:background="#999999" />
+            android:background="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -91,9 +92,10 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="#4E525B"
+                android:backgroundTint="@color/white"
                 android:elevation="0dp"
                 android:text="Continue"
+                android:textColor="@color/cardinal"
                 android:tint="@android:color/white"
                 app:elevation="0dp"
                 app:fabCustomSize="80dp"
@@ -109,9 +111,28 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:padding="15dp"
                 android:text="Sign up"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/white" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/googleSignInBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Continue with Google"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

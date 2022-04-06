@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".lunch.LunchActivity">
+    tools:context=".lunch.LunchActivity"
+    android:background="@color/cardinal">
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,7 +16,7 @@
             android:id="@+id/schedule_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="70dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#4E525B"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/cardinal"
             android:elevation="0dp"
             android:tint="@android:color/white"
             app:elevation="0dp"
@@ -56,6 +58,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:padding="15dp"
             android:text="Back"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>

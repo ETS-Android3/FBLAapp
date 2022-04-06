@@ -9,6 +9,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout lunch;
     ConstraintLayout emailStaff;
     ConstraintLayout calendar;
+    ConstraintLayout bugReport;
 
     StorageReference mStorageRef;
     DatabaseReference mDatabaseRef;
@@ -65,17 +69,28 @@ public class MainActivity extends AppCompatActivity {
         lunch = findViewById(R.id.lunch);
         emailStaff = findViewById(R.id.emailStaff);
         calendar = findViewById(R.id.calendar);
+        bugReport = findViewById(R.id.bugReport);
 
         btnLogOut = findViewById(R.id.logout);
         mAuth = FirebaseAuth.getInstance();
 
         // OnClickListener for all the different functions, sends them to different activities
         btnLogOut.setOnClickListener(view -> {
-            mAuth.signOut();
+            // Gets email and information of the user signed in
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+            GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            // Signs the user out of Google
+            mGoogleSignInClient.signOut();
+            // Signs the user out of app
+            mAuth.getInstance().signOut();
+            // Changes the page to the login page
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
 
 
+        // If buttons are clicked, the page will change
         schedule.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, ScheduleActivity.class));
         });
@@ -94,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
         calendar.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, CalendarActivity.class));
+        });
+
+        bugReport.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, BugActivity.class));
         });
     }
 }

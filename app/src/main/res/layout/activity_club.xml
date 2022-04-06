@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".extraActivities.ClubActivity">
+    tools:context=".extraActivities.ClubActivity"
+    android:background="@color/cardinal">
     <RelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,6 +19,9 @@
             android:layout_margin="16dp"
             android:inputType="text"
             android:hint="Club Name"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"
             android:imeOptions="actionDone"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -47,8 +51,9 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:backgroundTint="#4E525B"
+            android:backgroundTint="@color/white"
             android:tint="@android:color/white"
+            android:textColor="@color/cardinal"
             android:padding="15dp"
             android:text="Back"
             android:textStyle="bold" />

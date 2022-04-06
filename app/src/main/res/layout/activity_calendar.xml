@@ -25,8 +25,9 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_gravity="bottom"
-        android:backgroundTint="#4E525B"
-        android:tint="@android:color/white"
+        android:backgroundTint="@color/cardinal"
+        android:tint="@color/cardinal"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/wvCalendar"
         android:text="Back"
         android:textStyle="bold"/>

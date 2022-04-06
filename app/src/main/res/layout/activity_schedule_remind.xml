@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/cardinal">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
             android:gravity="center"
             android:text="Period"
             android:textSize="30dp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:textColor="@color/white"
             android:text="Class"
             android:textSize="30dp" />
 
@@ -39,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:textColor="@color/white"
             android:text="Time"
             android:textSize="30dp" />
 
@@ -48,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:textColor="@color/white"
             android:text="Date"
             android:textSize="30dp" />
 
@@ -69,8 +74,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#F44336"
+            android:backgroundTint="@color/white"
             android:elevation="0dp"
+            android:textColor="@android:color/holo_red_light"
             android:tint="@android:color/white"
             app:elevation="0dp"
             app:fabCustomSize="80dp"
@@ -87,6 +93,7 @@
             android:textSize="18sp"
             android:backgroundTint="#4E525B"
             android:text="Back"
+            android:textColor="@color/white"
             android:textStyle="bold" />
     </RelativeLayout>
 

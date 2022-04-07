@@ -45,7 +45,7 @@ IDE for developing app using Java code.
 Design was coded in XML code.
 
 References
-- FBLA-PBL, www.fbla-pbl.org/
+- FBLA-PBL, https://www.fbla-pbl.org/
 - FBLA Topics, https://www.fbla-pbl.org/fbla-topics/
 
 License

@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleApiClient googleApiClient;
 
     private static final String TAG = "GOOGLE_SIGN_IN_TAG";
-    private static final int REQ_ONE_TAP = 2;  // Can be any integer unique to the Activity.
+    private static final int REQ_ONE_TAP = 2;
     private boolean showOneTapUI = true;
     private SignInClient oneTapClient;
 
